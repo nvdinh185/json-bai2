@@ -26,7 +26,9 @@ var formInput = $("#edit-form :input");
         formInput[4].value = book.status;
 
     } catch (error) {
-        console.log('Lỗi ', error);
+        var errorElement = $('#error');
+        errorElement.text('Xảy ra lỗi: ' + error);
+        $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
 })()
 
@@ -44,6 +46,7 @@ form.on("submit", async function (e) {
     var description = formValue['description'];
     var detail = formValue['detail'];
     var status = formValue['status'];
+    status = status === 'true';//chuyển sang kiểu dữ liệu boolean
 
     var editBook = {
         id,
@@ -63,16 +66,10 @@ form.on("submit", async function (e) {
 
         //handle success
         console.log('results: ', results);
-        window.location = 'list.html';
+        location = 'list.html?msg=2';
     } catch (error) {
-        // var errorElement = document.getElementById('error');
-        // errorElement.innerText = 'Xảy ra lỗi!';
-        // Object.assign(errorElement.style, {
-        //     display: 'block',
-        //     color: 'red',
-        //     fontStyle: 'italic',
-        //     fontWeight: 'bold',
-        //     backgroundColor: 'yellow'
-        // })
+        var errorElement = $('#error');
+        errorElement.text('Xảy ra lỗi: ' + error);
+        $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
 });

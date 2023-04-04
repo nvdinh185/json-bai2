@@ -7,11 +7,11 @@
 </head>
 
 <body>
-	<div class="module">
+	<div>
 		<h2>
 			<span>Thêm thông tin sách</span>
 		</h2>
-
+		<p id="error"></p>
 		<div>
 
 			<form id="add-form">
@@ -19,24 +19,29 @@
 				<p>
 					<label>title</label><br />
 					<input type="text" name="title" value="" />
+					<span></span>
 				</p>
 
 				<p>
 					<label>description</label><br />
 					<textarea rows="3" cols="25" name="description"></textarea>
+					<span></span>
 				</p>
 
 				<p>
 					<label>detail</label><br />
 					<textarea rows="3" cols="25" name="detail"></textarea>
+					<span></span>
 				</p>
 
 				<p>
 					<label>status</label><br />
 					<select name="status">
+						<option value="">-- Choose status --</option>
 						<option value="true">Enabled</option>
 						<option value="false">Disabled </option>
 					</select>
+					<span></span>
 				</p>
 				<input type="submit" value="Thêm sách" />
 			</form>
