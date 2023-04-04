@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Thêm sách</title>
+</head>
+
+<body>
+	<div class="module">
+		<h2>
+			<span>Thêm thông tin sách</span>
+		</h2>
+
+		<div>
+
+			<form action="" method="post">
+
+				<p>
+					<input type="hidden" name="bookId" value="" />
+
+				</p>
+
+				<p>
+					<label>title</label><br />
+					<input type="text" name="title" value="" />
+				</p>
+
+				<p>
+					<label>description</label><br />
+					<textarea rows="3" cols="25" name="description"></textarea>
+				</p>
+
+				<p>
+					<label>detail</label><br />
+					<textarea rows="3" cols="25" name="detail"></textarea>
+				</p>
+
+				<p>
+					<label>status</label><br />
+					<select name="status">
+						<option value="true">Enabled</option>
+						<option value="false">Disabled </option>
+					</select>
+				</p>
+				<input type="submit" value="Thêm sách" />
+			</form>
+			<button><a href="list.html">Danh sách</a></button>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
