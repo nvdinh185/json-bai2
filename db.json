@@ -1,0 +1,25 @@
+{
+  "books": [
+    {
+      "id": "6de2-bd9f-c63-1e28",
+      "title": "dinh-new",
+      "description": "mô tả new",
+      "detail": "chi tiết new",
+      "status": "true"
+    },
+    {
+      "id": "e5c5-805d-e2c-3900",
+      "title": "vui vui",
+      "description": "mô tả vui vui",
+      "detail": "chi tiết vui vui",
+      "status": "false"
+    },
+    {
+      "id": "cefd-7db0-2b8-2da0",
+      "title": "hero",
+      "description": "mô tả anh hùng",
+      "detail": "chi tiết anh hùng",
+      "status": "true"
+    }
+  ]
+}
