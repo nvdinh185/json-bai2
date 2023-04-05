@@ -34,18 +34,12 @@ var formInput = $("#edit-form :input");
 
 form.on("submit", async function (e) {
     e.preventDefault();
-    const formValue = {};
-    for (const el of e.target) {
-        if (el.name) {
-            formValue[el.name] = el.value;
-        }
-    }
 
-    var id = formValue['id'];
-    var title = formValue['title'];
-    var description = formValue['description'];
-    var detail = formValue['detail'];
-    var status = formValue['status'];
+    var id = $('input[name="id"]').val();
+    var title = $('input[name="title"]').val();
+    var description = $('textarea[name="description"]').val();
+    var detail = $('textarea[name="detail"]').val();
+    var status = $('select[name="status"]').val();
     status = status === 'true';//chuyển sang kiểu dữ liệu boolean
 
     var editBook = {

@@ -8,6 +8,7 @@
 
 <body>
 	<div>
+		<button><a href="list.html">Danh sách</a></button>
 		<h2>
 			<span>Sửa thông tin sách</span>
 		</h2>
@@ -16,36 +17,35 @@
 
 			<form id="edit-form">
 
-				<p>
+				<div>
 					<input type="hidden" name="id" value="" />
 
-				</p>
+				</div>
 
-				<p>
+				<div>
 					<label>title</label><br />
 					<input type="text" name="title" value="" />
-				</p>
+				</div>
 
-				<p>
+				<div>
 					<label>description</label><br />
 					<textarea rows="3" cols="25" name="description"></textarea>
-				</p>
+				</div>
 
-				<p>
+				<div>
 					<label>detail</label><br />
 					<textarea rows="3" cols="25" name="detail"></textarea>
-				</p>
+				</div>
 
-				<p>
+				<div>
 					<label>status</label><br />
 					<select name="status">
 						<option value="true">Enabled</option>
 						<option value="false">Disabled </option>
 					</select>
-				</p>
+				</div><br />
 				<input type="submit" value="Sửa sách" />
 			</form>
-			<button><a href="list.html">Danh sách</a></button>
 		</div>
 	</div>
 	<script src="lib/axios.min.js"></script>

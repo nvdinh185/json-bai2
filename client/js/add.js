@@ -1,6 +1,7 @@
 const booksApi = "http://localhost:3001/books";
 var form = $('#add-form');
 
+// Hàm này để tạo id là 1 chuỗi ngẫu nhiên
 function generateUuid() {
     return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, function (c) {
         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -8,6 +9,7 @@ function generateUuid() {
     });
 }
 
+// Hàm này để validate khi blur vào ô input
 function handleBlurInput(input) {
     var errorElement = input.parent().children()[3];
     input.blur(function () {
@@ -27,9 +29,9 @@ handleBlurInput($('select[name="status"]'));
 
 form.on("submit", async function (e) {
     e.preventDefault();
-    function validRequired(inputElement, value) {
+    function validRequired(inputElement) {
         var errorElement = inputElement.parent().children()[3];
-        if (value === '') {
+        if (inputElement.val() === '') {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
             return false;
@@ -38,22 +40,16 @@ form.on("submit", async function (e) {
             return true;
         }
     }
-    const formValue = {};
-    for (const el of e.target) {
-        if (el.name) {
-            formValue[el.name] = el.value;
-        }
-    }
 
-    var title = formValue['title'];
-    var description = formValue['description'];
-    var detail = formValue['detail'];
-    var status = formValue['status'];
+    var title = $('input[name="title"]').val();
+    var description = $('textarea[name="description"]').val();
+    var detail = $('textarea[name="detail"]').val();
+    var status = $('select[name="status"]').val();
     var check = true;
-    !validRequired($('input[name="title"]'), title) ? check = false : '';
-    !validRequired($('textarea[name="description"]'), description) ? check = false : '';
-    !validRequired($('textarea[name="detail"]'), detail) ? check = false : '';
-    !validRequired($('select[name="status"]'), status) ? check = false : '';
+    !validRequired($('input[name="title"]')) ? check = false : '';
+    !validRequired($('textarea[name="description"]')) ? check = false : '';
+    !validRequired($('textarea[name="detail"]')) ? check = false : '';
+    !validRequired($('select[name="status"]')) ? check = false : '';
     if (check) {
         status = status === 'true';//chuyển sang kiểu dữ liệu boolean
         var newBook = {
