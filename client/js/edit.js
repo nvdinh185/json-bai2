@@ -4,7 +4,7 @@ var formInput = $("#edit-form :input");
 
 (async () => {
 
-    function getParameterByName(name, url = window.location.href) {
+    function getParameterByName(name, url = location.href) {
         name = name.replace(/[\[\]]/g, '\\$&');
         var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
             results = regex.exec(url);

@@ -1,6 +1,6 @@
 const booksApi = "http://localhost:3001/books";
 
-function getParameterByName(name, url = window.location.href) {
+function getParameterByName(name, url = location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
         results = regex.exec(url);
@@ -49,7 +49,6 @@ if (msg === '1') {
 
         function renderBook(book) {
             var trElement = $('<tr></tr>');
-            $(trElement).attr('class', 'book-' + book.id);
 
             const htmlContent = `
                 <td>${book.id}</td>
