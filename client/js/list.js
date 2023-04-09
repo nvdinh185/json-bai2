@@ -11,18 +11,14 @@ function getParameterByName(name, url = location.href) {
 
 var msg = getParameterByName('msg');
 
+var msgElement = $('#msg');
+$(msgElement).attr('style', 'color: green; background: yellow');
 if (msg === '1') {
-    var msgElement = $('#msg');
     msgElement.text('Đã thêm thành công!');
-    $(msgElement).attr('style', 'color: green; background: yellow');
 } else if (msg === '2') {
-    var msgElement = $('#msg');
     msgElement.text('Đã sửa thành công!');
-    $(msgElement).attr('style', 'color: green; background: yellow');
 } else if (msg === '3') {
-    var msgElement = $('#msg');
     msgElement.text('Đã xóa thành công!');
-    $(msgElement).attr('style', 'color: green; background: yellow');
 }
 
 (async function () {
