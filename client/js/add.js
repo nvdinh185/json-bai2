@@ -41,17 +41,18 @@ form.on("submit", async function (e) {
         }
     }
 
-    var title = $('input[name="title"]').val();
-    var description = $('textarea[name="description"]').val();
-    var detail = $('textarea[name="detail"]').val();
-    var status = $('select[name="status"]').val();
     var check = true;
     !validRequired($('input[name="title"]')) ? check = false : '';
     !validRequired($('textarea[name="description"]')) ? check = false : '';
     !validRequired($('textarea[name="detail"]')) ? check = false : '';
     !validRequired($('select[name="status"]')) ? check = false : '';
     if (check) {
+        var title = $('input[name="title"]').val();
+        var description = $('textarea[name="description"]').val();
+        var detail = $('textarea[name="detail"]').val();
+        var status = $('select[name="status"]').val();
         status = status === 'true';//chuyển sang kiểu dữ liệu boolean
+
         var newBook = {
             id: generateUuid(),
             title,
