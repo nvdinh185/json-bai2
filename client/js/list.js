@@ -32,7 +32,6 @@ if (msg === '1') {
         const trElement = $('<tr></tr>');
 
         const htmlTitle = `
-            <th>ID</th>
             <th>title</th>
             <th>description</th>
             <th>detail</th>
@@ -47,7 +46,6 @@ if (msg === '1') {
             var trElement = $('<tr></tr>');
 
             const htmlContent = `
-                <td>${book.id}</td>
                 <td>${book.title}</td>
                 <td>${book.description}</td>
                 <td>${book.detail}</td>
