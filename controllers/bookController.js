@@ -25,36 +25,33 @@ export const getBooks = async (req, res) => {
   }
 };
 
-// export const deleteUser = async (req, res, next) => {
-//   try {
-//     const id = req.params.id
-//     console.log(id);
-//     const deleteUser = await User.findByIdAndDelete(id)
-//     res.send(deleteUser)
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// };
+export const deleteBook = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const deleteBook = await Book.findOneAndDelete({ id });
+    res.send(deleteBook);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 
-// export const updateUser = async (req, res, next) => {
-//   try {
-//     const id = req.params.id
-//     const name = req.body
-//     console.log(name, "name");
-//     const updateUser = await User.findByIdAndUpdate(id, name)
-//     res.send(updateUser)
-//   } catch (error) {
-//     res.send({ "error": error.message })
-//   }
-// }
+export const updateBook = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const body = req.body;
+    const updateBook = await Book.findOneAndUpdate({ id }, body);
+    res.send(updateBook);
+  } catch (error) {
+    res.send({ "error": error.message });
+  }
+}
 
-// export const searchUser = async (req, res) => {
-//   try {
-//     const data = req.query.name
-//     console.log(data, 'name');
-//     const searchUser = await User.find({ "name": { $regex: data, $options: 'i' } },)
-//     res.send(searchUser)
-//   } catch (error) {
-//     res.send({ "error": error.message })
-//   }
-// }
+export const getABook = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const book = await Book.findOne({ id });
+    res.send(book);
+  } catch (error) {
+    res.send({ "error": error.message });
+  }
+}
