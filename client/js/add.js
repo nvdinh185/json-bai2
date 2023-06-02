@@ -65,7 +65,7 @@ form.on("submit", async function (e) {
             var results = await axios({
                 method: "POST",
                 url: booksApi,
-                data: JSON.stringify(newBook),
+                data: newBook,
                 headers: { "Content-Type": "application/json" },
             });
 
