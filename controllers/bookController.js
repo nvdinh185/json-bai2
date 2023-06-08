@@ -1,57 +1,120 @@
-import Book from "../model/book.js";
+const mysql = require('mysql');
 
-export const createBook = async (req, res) => {
-  try {
+const configDB = {
+  host: "localhost",
+  user: "root",
+  password: "123456",
+  database: "books"
+};
+
+class BookController {
+
+  // [GET] /books
+  async getBooks(req, res) {
+    try {
+      var conn = mysql.createConnection(configDB);
+
+      var sqlSelect = "SELECT * FROM books";
+      const listBooks = await new Promise((resolve, reject) => {
+        conn.query(sqlSelect, function (err, results) {
+          if (err) reject(err);
+          resolve(results);
+        });
+      });
+      res.status(200).send(listBooks);
+    } catch (err) {
+      console.log("Lỗi: " + err);
+      res.status(500).send(err);
+    } finally {
+      conn.end();
+    }
+  }
+
+  // [GET] /books/:id
+  async getABook(req, res) {
+    try {
+      var conn = mysql.createConnection(configDB);
+
+      const id = req.params.id;
+      const book = await new Promise((resolve, reject) => {
+        conn.query(`SELECT * FROM books WHERE id = '${id}'`, (err, row) => {
+          if (err) reject(err);
+          resolve(row);
+        })
+      })
+      res.status(200).send(book[0]);
+    } catch (err) {
+      res.status(500).send(err);
+    } finally {
+      conn.end();
+    }
+  }
+
+  // [POST] /books
+  async createBook(req, res) {
     const { id, title, description, detail, status } = req.body;
-    const newBook = await Book.create({
-      id,
-      title,
-      description,
-      detail,
-      status
-    });
-    res.status(200).json(newBook);
-  } catch (error) {
-    res.status(500).json(error);
+    try {
+      var conn = mysql.createConnection(configDB);
+      const newBook = await new Promise((resolve, reject) => {
+        conn.query(`INSERT INTO books VALUES (?, ?, ?, ?, ?)`,
+          [id, title, description, detail, status], function (err, results) {
+            if (err) {
+              reject(new Error(err.message));
+            }
+            resolve(results);
+          });
+      });
+      res.status(200).send(newBook);
+    } catch (error) {
+      res.status(500).send(error);
+    } finally {
+      conn.end();
+    }
   }
-};
 
-export const getBooks = async (req, res) => {
-  try {
-    const listBooks = await Book.find();
-    res.status(200).json(listBooks);
-  } catch (err) {
-    res.status(500).json(err);
+  // [DELETE] /books/:id
+  async deleteBook(req, res) {
+    try {
+      var conn = mysql.createConnection(configDB);
+      const id = req.params.id;
+      const deleteBook = await new Promise((resolve, reject) => {
+        conn.query(`DELETE FROM books WHERE id = '${id}'`, function (err, results) {
+          if (err) {
+            reject(new Error(err.message));
+          }
+          resolve(results);
+        });
+      })
+      res.status(200).send(deleteBook);
+    } catch (error) {
+      res.status(500).send(error);
+    } finally {
+      conn.end();
+    }
   }
-};
 
-export const deleteBook = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const deleteBook = await Book.findOneAndDelete({ id });
-    res.send(deleteBook);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-};
-
-export const updateBook = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const body = req.body;
-    const updateBook = await Book.findOneAndUpdate({ id }, body);
-    res.send(updateBook);
-  } catch (error) {
-    res.send({ "error": error.message });
+  // [PUT] /books/:id
+  async updateBook(req, res) {
+    try {
+      var conn = mysql.createConnection(configDB);
+      const { id, title, description, detail, status } = req.body;
+      const updateBook = await new Promise((resolve, reject) => {
+        conn.query(`UPDATE books SET title = '${title}', description = '${description}',
+              detail = '${detail}', status = '${status}' WHERE id = '${id}'`, function (err, results) {
+          if (err) {
+            reject(new Error(err.message));
+          }
+          resolve(results);
+        });
+      })
+      res.status(200).send(updateBook);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    } finally {
+      conn.end();
+    }
   }
 }
 
-export const getABook = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const book = await Book.findOne({ id });
-    res.send(book);
-  } catch (error) {
-    res.send({ "error": error.message });
-  }
-}
+module.exports = new BookController();

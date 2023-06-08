@@ -51,7 +51,6 @@ form.on("submit", async function (e) {
         var description = $('textarea[name="description"]').val();
         var detail = $('textarea[name="detail"]').val();
         var status = $('select[name="status"]').val();
-        status = status === 'true';//chuyển sang kiểu dữ liệu boolean
 
         var newBook = {
             id: generateUuid(),
