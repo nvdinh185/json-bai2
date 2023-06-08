@@ -2,7 +2,7 @@ const booksApi = "http://localhost:3000/books";
 var form = $("#edit-form");
 var formInput = $("#edit-form :input");
 
-(async () => {
+(async function () {
 
     function getParameterByName(name, url = location.href) {
         name = name.replace(/[\[\]]/g, '\\$&');
