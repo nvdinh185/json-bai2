@@ -9,8 +9,8 @@ const configDB = {
 
 class BookController {
 
-  // [GET] /books
-  async getBooks(req, res) {
+  // [GET] /book
+  async getListBooks(req, res) {
     try {
       var conn = mysql.createConnection(configDB);
 
@@ -30,8 +30,8 @@ class BookController {
     }
   }
 
-  // [GET] /books/:id
-  async getABook(req, res) {
+  // [GET] /book/:id
+  async getBookById(req, res) {
     try {
       var conn = mysql.createConnection(configDB);
 
@@ -50,7 +50,7 @@ class BookController {
     }
   }
 
-  // [POST] /books
+  // [POST] /book
   async createBook(req, res) {
     const { id, title, description, detail, status } = req.body;
     try {
@@ -72,7 +72,7 @@ class BookController {
     }
   }
 
-  // [DELETE] /books/:id
+  // [DELETE] /book/:id
   async deleteBook(req, res) {
     try {
       var conn = mysql.createConnection(configDB);
@@ -93,7 +93,7 @@ class BookController {
     }
   }
 
-  // [PUT] /books/:id
+  // [PUT] /book/:id
   async updateBook(req, res) {
     try {
       var conn = mysql.createConnection(configDB);

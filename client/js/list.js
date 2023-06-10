@@ -1,4 +1,4 @@
-const booksApi = "http://localhost:3000/books";
+const booksApi = "http://localhost:3000/book";
 
 function getParameterByName(name, url = location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');

@@ -1,7 +1,7 @@
 const bookRouter = require('./book');
 
 function route(app) {
-    app.use('/books', bookRouter);
+    app.use('/book', bookRouter);
 }
 
 module.exports = route;

@@ -1,4 +1,4 @@
-const booksApi = "http://localhost:3000/books";
+const booksApi = "http://localhost:3000/book";
 var form = $('#add-form');
 
 // Hàm này để tạo id là 1 chuỗi ngẫu nhiên
