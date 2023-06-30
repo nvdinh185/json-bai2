@@ -13,13 +13,20 @@ function generateUuid() {
 function handleBlurInput(input) {
     var errorElement = input.parent().children()[3];
     input.blur(function () {
-        if (input.val() === '') {
+        if (input.val().trim() === '') {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
+            $(input).addClass('invalid');
         } else {
             $(errorElement).attr('style', 'display: none;');
+            $(input).removeClass('invalid');
         }
     })
+
+    $(input).on('input', function () {
+        $(errorElement).attr('style', 'display: none;');
+        $(input).removeClass('invalid');
+    });
 }
 
 handleBlurInput($('input[name="title"]'));
@@ -29,23 +36,25 @@ handleBlurInput($('select[name="status"]'));
 
 form.on("submit", async function (e) {
     e.preventDefault();
-    function validRequired(inputElement) {
+    function isRequired(inputElement) {
         var errorElement = inputElement.parent().children()[3];
-        if (inputElement.val() === '') {
+        if (inputElement.val().trim() === '') {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
+            $(inputElement).addClass('invalid');
             return false;
         } else {
             $(errorElement).attr('style', 'display: none;');
+            $(inputElement).removeClass('invalid');
             return true;
         }
     }
 
     var check = true;
-    !validRequired($('input[name="title"]')) ? check = false : '';
-    !validRequired($('textarea[name="description"]')) ? check = false : '';
-    !validRequired($('textarea[name="detail"]')) ? check = false : '';
-    !validRequired($('select[name="status"]')) ? check = false : '';
+    !isRequired($('input[name="title"]')) ? check = false : '';
+    !isRequired($('textarea[name="description"]')) ? check = false : '';
+    !isRequired($('textarea[name="detail"]')) ? check = false : '';
+    !isRequired($('select[name="status"]')) ? check = false : '';
     if (check) {
         var title = $('input[name="title"]').val();
         var description = $('textarea[name="description"]').val();
