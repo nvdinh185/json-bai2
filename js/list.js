@@ -1,24 +1,3 @@
-function getParameterByName(name, url = location.href) {
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
-var msg = getParameterByName('msg');
-
-var msgElement = $('#msg');
-$(msgElement).attr('style', 'color: green; background: yellow');
-if (msg === '1') {
-    msgElement.text('Đã thêm thành công!');
-} else if (msg === '2') {
-    msgElement.text('Đã sửa thành công!');
-} else if (msg === '3') {
-    msgElement.text('Đã xóa thành công!');
-}
-
 var books = [
     {
         id: 1,
@@ -28,14 +7,14 @@ var books = [
         status: 1
     },
     {
-        id: 1,
+        id: 2,
         title: 'sách giáo khoa',
         description: 'sách giáo khoa',
         detail: 'sách giáo khoa',
         status: 0
     },
     {
-        id: 1,
+        id: 3,
         title: 'tiểu thuyết',
         description: 'tiểu thuyết',
         detail: 'tiểu thuyết',
