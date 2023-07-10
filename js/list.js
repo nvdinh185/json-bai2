@@ -1,24 +1,3 @@
-function getParameterByName(name, url = location.href) {
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
-var msg = getParameterByName('msg');
-
-var msgElement = $('#msg');
-$(msgElement).attr('style', 'color: green; background: yellow');
-if (msg === '1') {
-    msgElement.text('Đã thêm thành công!');
-} else if (msg === '2') {
-    msgElement.text('Đã sửa thành công!');
-} else if (msg === '3') {
-    msgElement.text('Đã xóa thành công!');
-}
-
 var books = [
     {
         id: 1,
@@ -28,14 +7,14 @@ var books = [
         status: 1
     },
     {
-        id: 1,
+        id: 2,
         title: 'sách giáo khoa',
         description: 'sách giáo khoa',
         detail: 'sách giáo khoa',
         status: 0
     },
     {
-        id: 1,
+        id: 3,
         title: 'tiểu thuyết',
         description: 'tiểu thuyết',
         detail: 'tiểu thuyết',
@@ -43,10 +22,10 @@ var books = [
     },
 ]
 
-const tbElement = $('#list-books');
+const tbElement = document.querySelector('#list-books');
 
 // Tiêu đề
-const trElement = $('<tr></tr>');
+const trElement = document.createElement('tr');
 
 const htmlTitle = `
             <th>title</th>
@@ -56,11 +35,11 @@ const htmlTitle = `
             <th>function</th>
         `;
 
-trElement.html(htmlTitle);
-tbElement.append(trElement);
+trElement.innerHTML = htmlTitle;
+tbElement.appendChild(trElement);
 
 function renderBook(book) {
-    var trElement = $('<tr></tr>');
+    var trElement = document.createElement('tr');
 
     const htmlContent = `
                 <td>${book.title}</td>
@@ -73,14 +52,14 @@ function renderBook(book) {
                 </td>
             `;
 
-    trElement.html(htmlContent);
+    trElement.innerHTML = htmlContent;
     return trElement;
 }
 
 // Nội dung
 books.forEach(function (book) {
     var trElement = renderBook(book);
-    tbElement.append(trElement);
+    tbElement.appendChild(trElement);
 })
 
 function onUpdate(id) {
