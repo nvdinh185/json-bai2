@@ -29,7 +29,7 @@ handleBlurInput($('select[name="status"]'));
 
 form.on("submit", async function (e) {
     e.preventDefault();
-    function validRequired(inputElement) {
+    function isRequired(inputElement) {
         var errorElement = inputElement.parent().children()[3];
         if (inputElement.val() === '') {
             $(errorElement).text('Vui lòng nhập!');
@@ -42,10 +42,10 @@ form.on("submit", async function (e) {
     }
 
     var check = true;
-    !validRequired($('input[name="title"]')) ? check = false : '';
-    !validRequired($('textarea[name="description"]')) ? check = false : '';
-    !validRequired($('textarea[name="detail"]')) ? check = false : '';
-    !validRequired($('select[name="status"]')) ? check = false : '';
+    !isRequired($('input[name="title"]')) ? check = false : '';
+    !isRequired($('textarea[name="description"]')) ? check = false : '';
+    !isRequired($('textarea[name="detail"]')) ? check = false : '';
+    !isRequired($('select[name="status"]')) ? check = false : '';
     if (check) {
         var title = $('input[name="title"]').val();
         var description = $('textarea[name="description"]').val();
@@ -65,7 +65,7 @@ form.on("submit", async function (e) {
             var results = await axios({
                 method: "POST",
                 url: booksApi,
-                data: JSON.stringify(newBook),
+                data: newBook,
                 headers: { "Content-Type": "application/json" },
             });
 

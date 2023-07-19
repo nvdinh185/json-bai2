@@ -2,7 +2,7 @@ const booksApi = "http://localhost:3001/books";
 var form = $("#edit-form");
 var formInput = $("#edit-form :input");
 
-(async () => {
+async function getBookById() {
 
     function getParameterByName(name, url = location.href) {
         name = name.replace(/[\[\]]/g, '\\$&');
@@ -30,7 +30,8 @@ var formInput = $("#edit-form :input");
         errorElement.text('Xảy ra lỗi: ' + error);
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
-})()
+}
+getBookById();
 
 form.on("submit", async function (e) {
     e.preventDefault();
@@ -54,7 +55,7 @@ form.on("submit", async function (e) {
         var results = await axios({
             method: "PUT",
             url: booksApi + '/' + id,
-            data: JSON.stringify(editBook),
+            data: editBook,
             headers: { "Content-Type": "application/json" },
         });
 
@@ -66,4 +67,4 @@ form.on("submit", async function (e) {
         errorElement.text('Xảy ra lỗi: ' + error);
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
-});
+})

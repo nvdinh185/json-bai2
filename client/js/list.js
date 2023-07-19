@@ -21,7 +21,7 @@ if (msg === '1') {
     msgElement.text('Đã xóa thành công!');
 }
 
-(async function () {
+async function display() {
     try {
         var books = await axios.get(booksApi);
         books = books.data;
@@ -70,7 +70,8 @@ if (msg === '1') {
         errorElement.text('Xảy ra lỗi khi lấy dữ liệu: ' + error);
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
-})()
+}
+display();
 
 function onUpdate(id) {
     location = `edit.html?id=${id}`;
