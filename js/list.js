@@ -39,7 +39,7 @@ trElement.html(htmlTitle);
 tbElement.append(trElement);
 
 function renderBook(book) {
-    var trElement = $('<tr></tr>');
+    var trElement = $(`<tr class='book-${book.id}'></tr>`);
 
     const htmlContent = `
                 <td>${book.title}</td>
@@ -68,6 +68,13 @@ function onUpdate(id) {
 
 async function onDelete(id) {
     if (confirm("Bạn có chắc muốn xóa?")) {
-
+        var idx = books.findIndex(function (el) {
+            return el.id == id;
+        })
+        books.splice(idx, 1);
+        var bookItem = $('.book-' + id);
+        if (bookItem) {
+            bookItem.remove();
+        }
     }
 }
