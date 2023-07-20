@@ -40,6 +40,7 @@ tbElement.appendChild(trElement);
 
 function renderBook(book) {
     var trElement = document.createElement('tr');
+    trElement.setAttribute('class', `book-${book.id}`);
 
     const htmlContent = `
                 <td>${book.title}</td>
@@ -66,8 +67,15 @@ function onUpdate(id) {
     location = `edit.html?id=${id}`;
 }
 
-async function onDelete(id) {
+function onDelete(id) {
     if (confirm("Bạn có chắc muốn xóa?")) {
-
+        var idx = books.findIndex(function (el) {
+            return el.id == id;
+        })
+        books.splice(idx, 1);
+        var bookItem = document.querySelector('.book-' + id);
+        if (bookItem) {
+            bookItem.remove();
+        }
     }
 }
