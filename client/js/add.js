@@ -13,12 +13,18 @@ function generateUuid() {
 function handleBlurInput(input) {
     var errorElement = input.parent().children()[3];
     input.blur(function () {
-        if (input.val() === '') {
+        if (input.val().trim() === '') {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
+            input.addClass('invalid');
         } else {
             $(errorElement).attr('style', 'display: none;');
         }
+    })
+
+    input.on('input', function () {
+        $(errorElement).attr('style', 'display: none;');
+        input.removeClass('invalid');
     })
 }
 
@@ -31,12 +37,14 @@ form.on("submit", async function (e) {
     e.preventDefault();
     function isRequired(inputElement) {
         var errorElement = inputElement.parent().children()[3];
-        if (inputElement.val() === '') {
+        if (inputElement.val().trim() === '') {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
+            inputElement.addClass('invalid');
             return false;
         } else {
             $(errorElement).attr('style', 'display: none;');
+            inputElement.removeClass('invalid');
             return true;
         }
     }
@@ -65,8 +73,7 @@ form.on("submit", async function (e) {
             var results = await axios({
                 method: "POST",
                 url: booksApi,
-                data: newBook,
-                headers: { "Content-Type": "application/json" },
+                data: newBook
             });
 
             //handle success

@@ -16,18 +16,18 @@ async function getBookById() {
     var id = getParameterByName('id');
     try {
 
-        book = await axios.get(booksApi + '/' + id);
-        book = book.data;
+        var bookById = await axios.get(booksApi + '/' + id);
+        bookById = bookById.data;
 
-        formInput[0].value = book.id;
-        formInput[1].value = book.title;
-        formInput[2].value = book.description;
-        formInput[3].value = book.detail;
-        formInput[4].value = book.status;
+        formInput[0].value = bookById.id;
+        formInput[1].value = bookById.title;
+        formInput[2].value = bookById.description;
+        formInput[3].value = bookById.detail;
+        formInput[4].value = bookById.status;
 
     } catch (error) {
         var errorElement = $('#error');
-        errorElement.text('Xảy ra lỗi: ' + error);
+        errorElement.text('Xảy ra lỗi khi lấy dữ liệu: ' + error);
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
 }
@@ -55,8 +55,7 @@ form.on("submit", async function (e) {
         var results = await axios({
             method: "PUT",
             url: booksApi + '/' + id,
-            data: editBook,
-            headers: { "Content-Type": "application/json" },
+            data: editBook
         });
 
         //handle success
@@ -64,7 +63,7 @@ form.on("submit", async function (e) {
         location = 'list.html?msg=2';
     } catch (error) {
         var errorElement = $('#error');
-        errorElement.text('Xảy ra lỗi: ' + error);
+        errorElement.text('Xảy ra lỗi khi sửa: ' + error);
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
 })
