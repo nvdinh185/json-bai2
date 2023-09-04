@@ -17,8 +17,6 @@ function handleBlurInput(input) {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
             input.addClass('invalid');
-        } else {
-            $(errorElement).attr('style', 'display: none;');
         }
     })
 
@@ -43,8 +41,6 @@ form.on("submit", async function (e) {
             inputElement.addClass('invalid');
             return false;
         } else {
-            $(errorElement).attr('style', 'display: none;');
-            inputElement.removeClass('invalid');
             return true;
         }
     }
