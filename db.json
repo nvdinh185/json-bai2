@@ -2,37 +2,23 @@
   "books": [
     {
       "id": "6de2-bd9f-c63-1e28",
-      "title": "dinh-new",
-      "description": "mô tả new",
-      "detail": "chi tiết new",
+      "title": "truyện dài",
+      "description": "mô tả truyện dài",
+      "detail": "chi tiết truyện dài",
       "status": true
     },
     {
       "id": "e5c5-805d-e2c-3900",
-      "title": "vui vui",
-      "description": "mô tả vui vui",
-      "detail": "chi tiết vui vui",
+      "title": "sách thiếu nhi",
+      "description": "mô tả sách thiếu nhi",
+      "detail": "chi tiết sách thiếu nhi",
       "status": true
     },
     {
       "id": "cefd-7db0-2b8-2da0",
-      "title": "hero",
-      "description": "mô tả anh hùng",
-      "detail": "chi tiết anh hùng",
-      "status": false
-    },
-    {
-      "id": "33d9-710c-b24-5fcf",
-      "title": "o",
-      "description": "o",
-      "detail": "o",
-      "status": false
-    },
-    {
-      "id": "5391-0c0b-263-e057",
-      "title": "o2",
-      "description": "o2",
-      "detail": "p2",
+      "title": "sách giáo khoa",
+      "description": "mô tả sách giáo khoa",
+      "detail": "chi tiết sách giáo khoa",
       "status": false
     }
   ]
