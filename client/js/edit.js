@@ -2,7 +2,7 @@ const booksApi = "http://localhost:3000/book";
 var form = $("#edit-form");
 var formInput = $("#edit-form :input");
 
-(async function () {
+async function getBookById() {
 
     function getParameterByName(name, url = location.href) {
         name = name.replace(/[\[\]]/g, '\\$&');
@@ -30,7 +30,8 @@ var formInput = $("#edit-form :input");
         errorElement.text('Xảy ra lỗi: ' + error);
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
-})()
+}
+getBookById();
 
 form.on("submit", async function (e) {
     e.preventDefault();
