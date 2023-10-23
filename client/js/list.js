@@ -23,8 +23,8 @@ if (msg === '1') {
 
 async function display() {
     try {
-        var books = await axios.get(booksApi);
-        books = books.data;
+        var listBooks = await axios.get(booksApi);
+        listBooks = listBooks.data;
 
         const tbElement = $('#list-books');
 
@@ -61,7 +61,7 @@ async function display() {
         }
 
         // Nội dung
-        books.forEach(function (book) {
+        listBooks.forEach(function (book) {
             var trElement = renderBook(book);
             tbElement.append(trElement);
         })
@@ -82,8 +82,7 @@ async function onDelete(id) {
         try {
             await axios({
                 method: "DELETE",
-                url: booksApi + '/' + id,
-                headers: { "Content-Type": "application/json" }
+                url: booksApi + '/' + id
             })
             location = 'list.html?msg=3';
         } catch (error) {
