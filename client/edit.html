@@ -18,12 +18,12 @@
 			<form id="edit-form">
 
 				<div>
-					<input type="hidden" name="id" value="" />
+					<input type="hidden" name="id" />
 				</div>
 
 				<div>
 					<label>title</label><br />
-					<input type="text" name="title" value="" />
+					<input type="text" name="title" />
 				</div>
 
 				<div>
@@ -39,6 +39,7 @@
 				<div>
 					<label>status</label><br />
 					<select name="status">
+						<option value="">-- Choose status --</option>
 						<option value="true">Enabled</option>
 						<option value="false">Disabled </option>
 					</select>

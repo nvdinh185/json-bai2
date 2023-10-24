@@ -39,17 +39,15 @@ form.on("submit", async function (e) {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
             inputElement.addClass('invalid');
-            return false;
-        } else {
             return true;
         }
     }
 
     var check = true;
-    !isRequired($('input[name="title"]')) ? check = false : '';
-    !isRequired($('textarea[name="description"]')) ? check = false : '';
-    !isRequired($('textarea[name="detail"]')) ? check = false : '';
-    !isRequired($('select[name="status"]')) ? check = false : '';
+    isRequired($('input[name="title"]')) ? check = false : '';
+    isRequired($('textarea[name="description"]')) ? check = false : '';
+    isRequired($('textarea[name="detail"]')) ? check = false : '';
+    isRequired($('select[name="status"]')) ? check = false : '';
     if (check) {
         var title = $('input[name="title"]').val();
         var description = $('textarea[name="description"]').val();
