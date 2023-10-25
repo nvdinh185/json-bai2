@@ -9,7 +9,7 @@ function generateUuid() {
     });
 }
 
-// Hàm này để validate khi blur vào ô input
+// Hàm này để validate khi blur hoặc nhập vào ô input
 function handleBlurInput(input) {
     var errorElement = input.parent().children()[3];
     input.blur(function () {
@@ -17,9 +17,6 @@ function handleBlurInput(input) {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
             $(input).addClass('invalid');
-        } else {
-            $(errorElement).attr('style', 'display: none;');
-            $(input).removeClass('invalid');
         }
     })
 
@@ -42,19 +39,15 @@ form.on("submit", async function (e) {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
             $(inputElement).addClass('invalid');
-            return false;
-        } else {
-            $(errorElement).attr('style', 'display: none;');
-            $(inputElement).removeClass('invalid');
             return true;
         }
     }
 
     var check = true;
-    !isRequired($('input[name="title"]')) ? check = false : '';
-    !isRequired($('textarea[name="description"]')) ? check = false : '';
-    !isRequired($('textarea[name="detail"]')) ? check = false : '';
-    !isRequired($('select[name="status"]')) ? check = false : '';
+    isRequired($('input[name="title"]')) ? check = false : '';
+    isRequired($('textarea[name="description"]')) ? check = false : '';
+    isRequired($('textarea[name="detail"]')) ? check = false : '';
+    isRequired($('select[name="status"]')) ? check = false : '';
     if (check) {
         var title = $('input[name="title"]').val();
         var description = $('textarea[name="description"]').val();
@@ -73,8 +66,7 @@ form.on("submit", async function (e) {
             var results = await axios({
                 method: "POST",
                 url: booksApi,
-                data: newBook,
-                headers: { "Content-Type": "application/json" },
+                data: newBook
             });
 
             //handle success

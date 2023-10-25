@@ -54,8 +54,7 @@ form.on("submit", async function (e) {
         var results = await axios({
             method: "PUT",
             url: booksApi + '/' + id,
-            data: editBook,
-            headers: { "Content-Type": "application/json" },
+            data: editBook
         });
 
         //handle success
