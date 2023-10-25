@@ -16,14 +16,14 @@ async function getBookById() {
     var id = getParameterByName('id');
     try {
 
-        book = await axios.get(booksApi + '/' + id);
-        book = book.data;
+        bookById = await axios.get(booksApi + '/' + id);
+        bookById = bookById.data;
 
-        formInput[0].value = book.id;
-        formInput[1].value = book.title;
-        formInput[2].value = book.description;
-        formInput[3].value = book.detail;
-        formInput[4].value = book.status;
+        formInput[0].value = bookById.id;
+        formInput[1].value = bookById.title;
+        formInput[2].value = bookById.description;
+        formInput[3].value = bookById.detail;
+        formInput[4].value = bookById.status;
 
     } catch (error) {
         var errorElement = $('#error');
