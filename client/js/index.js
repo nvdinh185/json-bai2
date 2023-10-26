@@ -42,7 +42,7 @@ async function display() {
                 <td>${book.title}</td>
                 <td>${book.description}</td>
                 <td>${book.detail}</td>
-                <td>${book.status}</td>
+                <td style="text-align: center">${book.status}</td>
                 <td>
                     <button onclick="onUpdate('${book.id}')">Sửa</button>
                     <button onclick="onDelete('${book.id}')">Xóa</button>
