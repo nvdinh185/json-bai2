@@ -9,7 +9,7 @@ function generateUuid() {
     });
 }
 
-// Hàm này để validate khi blur vào ô input
+// Hàm này để validate khi blur hoặc nhập vào ô input
 function handleBlurInput(input) {
     var errorElement = input.parent().children()[3];
     input.blur(function () {
@@ -53,7 +53,6 @@ form.on("submit", async function (e) {
         var description = $('textarea[name="description"]').val();
         var detail = $('textarea[name="detail"]').val();
         var status = $('select[name="status"]').val();
-        status = status === 'true';//chuyển sang kiểu dữ liệu boolean
 
         var newBook = {
             id: generateUuid(),
@@ -72,10 +71,10 @@ form.on("submit", async function (e) {
 
             //handle success
             console.log('results: ', results);
-            location = 'list.html?msg=1';
+            location = 'index.html?msg=1';
         } catch (error) {
             var errorElement = $('#error');
-            errorElement.text('Xảy ra lỗi: ' + error);
+            errorElement.text('Xảy ra lỗi khi thêm: ' + error);
             $(errorElement).attr('style', 'color: red; font-style: italic;');
         }
     }

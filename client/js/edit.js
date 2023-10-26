@@ -41,7 +41,6 @@ form.on("submit", async function (e) {
     var description = $('textarea[name="description"]').val();
     var detail = $('textarea[name="detail"]').val();
     var status = $('select[name="status"]').val();
-    status = status === 'true';//chuyển sang kiểu dữ liệu boolean
 
     var editBook = {
         id,
@@ -60,7 +59,7 @@ form.on("submit", async function (e) {
 
         //handle success
         console.log('results: ', results);
-        location = 'list.html?msg=2';
+        location = 'index.html?msg=2';
     } catch (error) {
         var errorElement = $('#error');
         errorElement.text('Xảy ra lỗi khi sửa: ' + error);
