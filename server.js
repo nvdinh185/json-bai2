@@ -10,10 +10,6 @@ const route = require('./routes');
 // Router init
 route(app);
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/client/list.html');
-})
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 })

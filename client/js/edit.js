@@ -16,7 +16,7 @@ async function getBookById() {
     var id = getParameterByName('id');
     try {
 
-        bookById = await axios.get(booksApi + '/' + id);
+        var bookById = await axios.get(booksApi + '/' + id);
         bookById = bookById.data;
 
         formInput[0].value = bookById.id;
@@ -27,7 +27,7 @@ async function getBookById() {
 
     } catch (error) {
         var errorElement = $('#error');
-        errorElement.text('Xảy ra lỗi: ' + error);
+        errorElement.text('Xảy ra lỗi khi lấy dữ liệu: ' + error);
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
 }
@@ -59,10 +59,10 @@ form.on("submit", async function (e) {
 
         //handle success
         console.log('results: ', results);
-        location = 'list.html?msg=2';
+        location = 'index.html?msg=2';
     } catch (error) {
         var errorElement = $('#error');
-        errorElement.text('Xảy ra lỗi: ' + error);
+        errorElement.text('Xảy ra lỗi khi sửa: ' + error);
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
-});
+})

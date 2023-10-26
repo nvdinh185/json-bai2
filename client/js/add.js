@@ -16,14 +16,14 @@ function handleBlurInput(input) {
         if (input.val().trim() === '') {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
-            $(input).addClass('invalid');
+            input.addClass('invalid');
         }
     })
 
-    $(input).on('input', function () {
+    input.on('input', function () {
         $(errorElement).attr('style', 'display: none;');
-        $(input).removeClass('invalid');
-    });
+        input.removeClass('invalid');
+    })
 }
 
 handleBlurInput($('input[name="title"]'));
@@ -38,7 +38,7 @@ form.on("submit", async function (e) {
         if (inputElement.val().trim() === '') {
             $(errorElement).text('Vui lòng nhập!');
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
-            $(inputElement).addClass('invalid');
+            inputElement.addClass('invalid');
             return true;
         }
     }
@@ -71,10 +71,10 @@ form.on("submit", async function (e) {
 
             //handle success
             console.log('results: ', results);
-            location = 'list.html?msg=1';
+            location = 'index.html?msg=1';
         } catch (error) {
             var errorElement = $('#error');
-            errorElement.text('Xảy ra lỗi: ' + error);
+            errorElement.text('Xảy ra lỗi khi thêm: ' + error);
             $(errorElement).attr('style', 'color: red; font-style: italic;');
         }
     }

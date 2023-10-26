@@ -21,57 +21,48 @@ if (msg === '1') {
     msgElement.text('Đã xóa thành công!');
 }
 
-async function renderListBook() {
+async function display() {
     try {
-        var books = await axios.get(booksApi);
-        books = books.data;
+        var listBooks = await axios.get(booksApi);
+        listBooks = listBooks.data;
 
         const tbElement = $('#list-books');
 
-        // Tiêu đề
-        const trElement = $('<tr></tr>');
-
-        const htmlTitle = `
+        var htmls = `<tr>
             <th>title</th>
             <th>description</th>
             <th>detail</th>
             <th>status</th>
             <th>function</th>
-        `;
-
-        trElement.html(htmlTitle);
-        tbElement.append(trElement);
+        </tr>`;
 
         function renderBook(book) {
-            var trElement = $('<tr></tr>');
 
-            const htmlContent = `
+            return `<tr>
                 <td>${book.title}</td>
                 <td>${book.description}</td>
                 <td>${book.detail}</td>
-                <td>${book.status ? 'Enabled' : 'Disabled'}</td>
+                <td style="text-align: center">${book.status}</td>
                 <td>
                     <button onclick="onUpdate('${book.id}')">Sửa</button>
                     <button onclick="onDelete('${book.id}')">Xóa</button>
                 </td>
-            `;
-
-            trElement.html(htmlContent);
-            return trElement;
+            </tr>`;
         }
 
         // Nội dung
-        books.forEach(function (book) {
-            var trElement = renderBook(book);
-            tbElement.append(trElement);
+        listBooks.forEach(function (book) {
+            htmls += renderBook(book);
         })
+
+        tbElement.html(htmls);
     } catch (error) {
         var errorElement = $('#msg');
         errorElement.text('Xảy ra lỗi khi lấy dữ liệu: ' + error);
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
 }
-renderListBook();
+display();
 
 function onUpdate(id) {
     location = `edit.html?id=${id}`;
@@ -82,10 +73,9 @@ async function onDelete(id) {
         try {
             await axios({
                 method: "DELETE",
-                url: booksApi + '/' + id,
-                headers: { "Content-Type": "application/json" }
+                url: booksApi + '/' + id
             })
-            location = 'list.html?msg=3';
+            location = 'index.html?msg=3';
         } catch (error) {
             var errorElement = $('#msg');
             errorElement.text('Xảy ra lỗi khi xoá: ' + error);
