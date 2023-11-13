@@ -2,9 +2,9 @@
   "books": [
     {
       "id": "6de2-bd9f-c63-1e28",
-      "title": "truyện dài",
-      "description": "mô tả truyện dài",
-      "detail": "chi tiết truyện dài",
+      "title": "tiểu thuyết",
+      "description": "mô tả tiểu thuyết",
+      "detail": "chi tiết tiểu thuyết",
       "status": "1"
     },
     {
