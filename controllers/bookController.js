@@ -36,13 +36,13 @@ class BookController {
       var conn = mysql.createConnection(configDB);
 
       const id = req.params.id;
-      const book = await new Promise((resolve, reject) => {
+      const bookById = await new Promise((resolve, reject) => {
         conn.query(`SELECT * FROM books WHERE id = '${id}'`, (err, row) => {
           if (err) reject(err);
           resolve(row);
         })
       })
-      res.status(200).send(book[0]);
+      res.status(200).send(bookById[0]);
     } catch (err) {
       res.status(500).send(err);
     } finally {
