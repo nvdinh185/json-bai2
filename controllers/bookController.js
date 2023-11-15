@@ -55,7 +55,7 @@ class BookController {
     const { id, title, description, detail, status } = req.body;
     try {
       var conn = mysql.createConnection(configDB);
-      const newBook = await new Promise((resolve, reject) => {
+      await new Promise((resolve, reject) => {
         conn.query(`INSERT INTO books VALUES (?, ?, ?, ?, ?)`,
           [id, title, description, detail, status], function (err, results) {
             if (err) {
@@ -64,7 +64,7 @@ class BookController {
             resolve(results);
           });
       });
-      res.status(200).send(newBook);
+      res.status(200).send('OK');
     } catch (error) {
       res.status(500).send(error);
     } finally {
@@ -77,7 +77,7 @@ class BookController {
     try {
       var conn = mysql.createConnection(configDB);
       const id = req.params.id;
-      const deleteBook = await new Promise((resolve, reject) => {
+      await new Promise((resolve, reject) => {
         conn.query(`DELETE FROM books WHERE id = '${id}'`, function (err, results) {
           if (err) {
             reject(new Error(err.message));
@@ -85,7 +85,7 @@ class BookController {
           resolve(results);
         });
       })
-      res.status(200).send(deleteBook);
+      res.status(200).send('OK');
     } catch (error) {
       res.status(500).send(error);
     } finally {
@@ -98,7 +98,7 @@ class BookController {
     try {
       var conn = mysql.createConnection(configDB);
       const { id, title, description, detail, status } = req.body;
-      const updateBook = await new Promise((resolve, reject) => {
+      await new Promise((resolve, reject) => {
         conn.query(`UPDATE books SET title = '${title}', description = '${description}',
               detail = '${detail}', status = '${status}' WHERE id = '${id}'`, function (err, results) {
           if (err) {
@@ -107,7 +107,7 @@ class BookController {
           resolve(results);
         });
       })
-      res.status(200).send(updateBook);
+      res.status(200).send('OK');
     } catch (error) {
       console.log(error);
       res.status(500).send(error);
