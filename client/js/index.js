@@ -12,7 +12,7 @@ function getParameterByName(name, url = location.href) {
 var msg = getParameterByName('msg');
 
 var msgElement = $('#msg');
-$(msgElement).attr('style', 'color: green; background: yellow');
+$(msgElement).attr('style', 'color: green; font-style: italic;');
 if (msg === '1') {
     msgElement.text('Đã thêm thành công!');
 } else if (msg === '2') {

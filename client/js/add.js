@@ -70,7 +70,7 @@ form.on("submit", async function (e) {
             });
 
             //handle success
-            console.log('results: ', results);
+            // console.log('results: ', results);
             location = 'index.html?msg=1';
         } catch (error) {
             var errorElement = $('#error');
