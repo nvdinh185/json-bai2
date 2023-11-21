@@ -74,7 +74,7 @@ form.on("submit", async function (e) {
             location = 'index.html?msg=1';
         } catch (error) {
             var errorElement = $('#error');
-            errorElement.text('Xảy ra lỗi khi thêm: ' + error);
+            errorElement.text('Xảy ra lỗi khi thêm!');
             $(errorElement).attr('style', 'color: red; font-style: italic;');
         }
     }
