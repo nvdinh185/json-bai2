@@ -58,7 +58,7 @@ async function display() {
         tbElement.html(htmls);
     } catch (error) {
         var errorElement = $('#msg');
-        errorElement.text('Xảy ra lỗi khi lấy dữ liệu: ' + error);
+        errorElement.text('Xảy ra lỗi khi lấy dữ liệu!');
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
 }
@@ -78,7 +78,7 @@ async function onDelete(id) {
             location = 'index.html?msg=3';
         } catch (error) {
             var errorElement = $('#msg');
-            errorElement.text('Xảy ra lỗi khi xoá: ' + error);
+            errorElement.text('Xảy ra lỗi khi xoá!');
             $(errorElement).attr('style', 'color: red; font-style: italic;');
         }
     }

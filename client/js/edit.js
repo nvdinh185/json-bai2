@@ -27,7 +27,7 @@ async function getBookById() {
 
     } catch (error) {
         var errorElement = $('#error');
-        errorElement.text('Xảy ra lỗi khi lấy dữ liệu: ' + error);
+        errorElement.text('Xảy ra lỗi khi lấy dữ liệu để sửa!');
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
 }
@@ -62,7 +62,7 @@ form.on("submit", async function (e) {
         location = 'index.html?msg=2';
     } catch (error) {
         var errorElement = $('#error');
-        errorElement.text('Xảy ra lỗi khi sửa: ' + error);
+        errorElement.text('Xảy ra lỗi khi sửa!');
         $(errorElement).attr('style', 'color: red; font-style: italic;');
     }
 })
