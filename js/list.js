@@ -47,7 +47,6 @@ function renderBook(book) {
                 <td>${book.detail}</td>
                 <td>${book.status ? 'Enabled' : 'Disabled'}</td>
                 <td>
-                    <button onclick="onUpdate('${book.id}')">Sửa</button>
                     <button onclick="onDelete('${book.id}')">Xóa</button>
                 </td>
             `;
@@ -62,11 +61,7 @@ books.forEach(function (book) {
     tbElement.append(trElement);
 })
 
-function onUpdate(id) {
-    location = `edit.html?id=${id}`;
-}
-
-async function onDelete(id) {
+function onDelete(id) {
     if (confirm("Bạn có chắc muốn xóa?")) {
         var idx = books.findIndex(function (el) {
             return el.id == id;
